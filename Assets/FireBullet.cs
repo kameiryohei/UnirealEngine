@@ -1,37 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBullet : MonoBehaviour
-{
-	[SerializeField]
-	[Tooltip("弾の発射場所")]
-	private GameObject firingPoint;
+public class FireBullet : MonoBehaviour {
 
-	[SerializeField]
-	[Tooltip("弾")]
-	private GameObject bullet;
+    // bullet prefab
+    public GameObject bullet;
 
-	[SerializeField]
-	[Tooltip("弾の速さ")]
-	private float speed = 30f;
+    // 弾丸発射点
+    public Transform muzzle;
 
+    // 弾丸の速度
+    public float speed = 1000;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
 	// Update is called once per frame
-	void Update()
-	{
-		// スペースキーが押されたかを判定
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			// 弾を発射する場所を取得
-			Vector3 bulletPosition = firingPoint.transform.position;
-			// 上で取得した場所に、"bullet"のPrefabを出現させる。Bulletの向きはMuzzleのローカル値と同じにする（3つ目の引数）
-			GameObject newBullet = Instantiate(bullet, bulletPosition, this.gameObject.transform.rotation);
-			// 出現させた弾のup(Y軸方向)を取得（MuzzleのローカルY軸方向のこと）
-			Vector3 direction = newBullet.transform.up;
-			// 弾の発射方向にnewBallのY方向(ローカル座標)を入れ、弾オブジェクトのrigidbodyに衝撃力を加える
-			newBullet.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.Impulse);
-			// 出現させた弾の名前を"bullet"に変更
-			newBullet.name = bullet.name;
-			// 出現させた弾を0.8秒後に消す
-			Destroy(newBullet, 2.0f);
-		}
+	void Update () {
+        // space キーが押された時
+        if (Input.GetKeyDown(KeyCode.Space)){
+            
+            // 弾丸の複製
+            GameObject bullets = Instantiate(bullet) as GameObject;
+
+            Vector3 force;
+
+            force = this.gameObject.transform.forward * speed;
+
+            // Rigidbodyに力を加えて発射
+            bullets.GetComponent<Rigidbody>().AddForce(force);
+
+            // 弾丸の位置を調整
+            bullets.transform.position = muzzle.position;
+        }
+		
 	}
 }
