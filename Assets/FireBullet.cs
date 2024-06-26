@@ -35,6 +35,8 @@ public class FireBullet   : MonoBehaviour {
 
             // 弾丸の位置を調整
             bullets.transform.position = muzzle.position;
+
+			Destroy(bullets, 0.8f);
         }
 		
 	}
