@@ -7,27 +7,27 @@ public class playemove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 60; // © FPS ‚ğ 60 ‚Éİ’è
+        Application.targetFrameRate = 60; // ï¿½ï¿½ FPS ï¿½ï¿½ 60 ï¿½Éİ’ï¿½
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("up")) // ª‚È‚ç‘O(Z •ûŒü)‚É 0.1 ‚¾‚¯i‚Ş
+        if (Input.GetKey("up")) // ï¿½ï¿½ï¿½È‚ï¿½O(Z ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ 0.1 ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½
         {
             transform.position += transform.forward * 0.1f;
         }
-        if (Input.GetKey("down")) // «‚È‚ç-Z •ûŒü‚É 0.1 ‚¾‚¯i‚Ş
+        if (Input.GetKey("down")) // ï¿½ï¿½ï¿½È‚ï¿½-Z ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0.1 ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½
         {
             transform.position -= transform.forward * 0.1f;
             
 
 
 }
-        if (Input.GetKey("right")) // ©‚È‚ç Y ²‚É 3 “x‰ñ“]‚·‚é
+        if (Input.GetKey("right")) // ï¿½ï¿½ï¿½È‚ï¿½ Y ï¿½ï¿½ï¿½ï¿½ 3 ï¿½xï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½
         {
             transform.Rotate(0f, 3.0f, 0f);
         }
-        if (Input.GetKey("left")) // ¨‚È‚ç Y ²‚É-3 “x‰ñ“]‚·‚é
+        if (Input.GetKey("left")) // ï¿½ï¿½ï¿½È‚ï¿½ Y ï¿½ï¿½ï¿½ï¿½-3 ï¿½xï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½
         {
             transform.Rotate(0f, -3.0f, 0f);
         }
