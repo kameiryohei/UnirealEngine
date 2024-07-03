@@ -5,15 +5,15 @@ using TMPro;
 
 public class Life : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI TextLife; // ƒ‰ƒCƒt‚ð•\Ž¦‚·‚é‚½‚ß‚ÌTextMeshProUGUI
-    [SerializeField] private TextMeshProUGUI GameOverTitle; // ƒQ[ƒ€ƒI[ƒo[Žž‚Ìƒ^ƒCƒgƒ‹‚ð•\Ž¦‚·‚éTextMeshProUGUI
-    private int playerLife = 3; // ƒvƒŒƒCƒ„[‚Ìƒ‰ƒCƒt‚ð‰Šú’l‚Æ‚µ‚Ä3‚ÉÝ’è
-    private bool isGameOver = false; // ƒQ[ƒ€ƒI[ƒo[ƒtƒ‰ƒO
+    [SerializeField] private TextMeshProUGUI TextLife; // ï¿½ï¿½ï¿½Cï¿½tï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚ï¿½TextMeshProUGUI
+    [SerializeField] private TextMeshProUGUI GameOverTitle; // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Ìƒ^ï¿½Cï¿½gï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TextMeshProUGUI
+    private int playerLife = 3; // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìƒï¿½ï¿½Cï¿½tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½Æ‚ï¿½ï¿½ï¿½3ï¿½ÉÝ’ï¿½
+    private bool isGameOver = false; // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½tï¿½ï¿½ï¿½O
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateLifeText(); // ‰Šúƒ‰ƒCƒt‚ð•\Ž¦
+        UpdateLifeText(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½tï¿½ï¿½\ï¿½ï¿½
     }
 
     // Update is called once per frame
@@ -21,34 +21,34 @@ public class Life : MonoBehaviour
     {
         if (isGameOver)
         {
-            // ƒQ[ƒ€ƒI[ƒo[Žž‚Ìˆ—i—á‚¦‚ÎƒJ[ƒ\ƒ‹‚ð”ñ•\Ž¦‚É‚·‚é‚È‚Çj
+            // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½á‚¦ï¿½ÎƒJï¿½[ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½È‚Çj
             DisablePlayerInput();
-            return; // ƒQ[ƒ€ƒI[ƒo[Žž‚ÍˆÈ~‚Ìˆ—‚ðs‚í‚È‚¢
+            return; // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½ÍˆÈ~ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½È‚ï¿½
         }
 
-        // ’Êí‚Ì“ü—Íˆ—‚ð‚±‚±‚É‹Lq‚·‚é
+        // ï¿½Êï¿½Ì“ï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‹Lï¿½qï¿½ï¿½ï¿½ï¿½
     }
 
-    // ƒvƒŒƒCƒ„[‚Ì“ü—Í‚ð–³Œø‰»‚·‚éƒƒ\ƒbƒh
+    // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ì“ï¿½ï¿½Í‚ð–³Œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½éƒï¿½\ï¿½bï¿½h
     void DisablePlayerInput()
     {
-        // —á: ƒJ[ƒ\ƒ‹‚ð”ñ•\Ž¦‚É‚·‚é
+        // ï¿½ï¿½: ï¿½Jï¿½[ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        // ‘¼‚Ì“ü—Í•û–@‚É‚Â‚¢‚Ä‚à“¯—l‚É–³Œø‰»‚·‚é•K—v‚ª‚ ‚ê‚Î’Ç‰Á‚·‚é
+        // ï¿½ï¿½ï¿½Ì“ï¿½ï¿½Í•ï¿½ï¿½@ï¿½É‚Â‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½lï¿½É–ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
-    // Õ“Ë‚ð”»’è‚·‚éˆ—‚ð’Ç‰Á‚·‚é
+    // ï¿½Õ“Ë‚ð”»’è‚·ï¿½éˆï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
-            DecreaseLife(); // ƒ‰ƒCƒt‚ðŒ¸‚ç‚·
+            DecreaseLife(); // ï¿½ï¿½ï¿½Cï¿½tï¿½ï¿½ï¿½ï¿½ï¿½ç‚·
         }
     }
 
-    // ƒ‰ƒCƒt‚ðŒ¸­‚³‚¹‚éƒƒ\ƒbƒh
+    // ï¿½ï¿½ï¿½Cï¿½tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½éƒï¿½\ï¿½bï¿½h
     void DecreaseLife()
     {
         if (playerLife > 0)
@@ -58,13 +58,13 @@ public class Life : MonoBehaviour
             if (playerLife <= 0)
             {
                 isGameOver = true;
-                // ƒQ[ƒ€ƒI[ƒo[Žž‚Ìˆ—i—á‚¦‚ÎƒeƒLƒXƒg•\Ž¦‚È‚Çj
+                // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½á‚¦ï¿½Îƒeï¿½Lï¿½Xï¿½gï¿½\ï¿½ï¿½ï¿½È‚Çj
                 GameOverTitle.text = "Game Over!";
             }
         }
     }
 
-    // ƒ‰ƒCƒt‚ðXV‚·‚éƒƒ\ƒbƒh
+    // ï¿½ï¿½ï¿½Cï¿½tï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½éƒï¿½\ï¿½bï¿½h
     void UpdateLifeText()
     {
         TextLife.text = string.Format("Life: {0}", playerLife);

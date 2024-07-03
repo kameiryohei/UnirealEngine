@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class EnemyLife : MonoBehaviour
 {
-    [SerializeField] private int enemyLife = 3; // 敵のライフを初期値3に設定
-    private bool isDead = false; // 敵が死んでいるかどうかのフラグ
+    [SerializeField] private int enemyLife = 3;
+    private bool isDead = false;
+    public bool isBoss = false; // ボスかどうかのフラグ
 
-    // 衝突を検知するメソッド
+    // イベントを発生させるためのデリゲートとイベント
+    public delegate void BossDefeatedHandler();
+    public static event BossDefeatedHandler OnBossDefeated;
+
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name == "Bullet(Clone)" && !isDead) // 衝突したのがプレイヤーの弾丸で、敵がまだ死んでいない場合
+        if (other.gameObject.name == "Bullet(Clone)" && !isDead)
         {
-            DecreaseLife(); // ライフを減らす
+            DecreaseLife();
         }
     }
 
-    // ライフを減らすメソッド
     void DecreaseLife()
     {
         if (enemyLife > 0)
@@ -25,7 +28,11 @@ public class EnemyLife : MonoBehaviour
             if (enemyLife <= 0)
             {
                 isDead = true;
-                // 敵のオブジェクトを削除
+                if (isBoss)
+                {
+                    // ボスが倒されたことを通知
+                    OnBossDefeated?.Invoke();
+                }
                 Destroy(gameObject);
             }
         }
