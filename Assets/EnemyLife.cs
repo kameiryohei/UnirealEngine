@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class EnemyLife : MonoBehaviour
 {
-    [SerializeField] private int enemyLife = 3; // “G‚Ìƒ‰ƒCƒt‚ð‰Šú’l‚Æ‚µ‚Ä3‚ÉÝ’è
-    private bool isDead = false; // “G‚ªŽ€‚ñ‚Å‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+    [SerializeField] private int enemyLife = 3; // æ•µã®ãƒ©ã‚¤ãƒ•ã‚’åˆæœŸå€¤3ã«è¨­å®š
+    private bool isDead = false; // æ•µãŒæ­»ã‚“ã§ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-    // Õ“Ë‚ð”»’è‚·‚éˆ—‚ð’Ç‰Á‚·‚é
-    void OnCollisionEnter(Collision other) // Õ“Ë‚ð”»’è‚·‚éŠÖ”‚ðŒÄ‚Ô
+    // è¡çªã‚’æ¤œçŸ¥ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
+    void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name == "Bullet(Clone)") // Õ“Ë‚µ‚½•¨‘Ì‚ªƒvƒŒƒCƒ„[‚ÌƒvƒƒWƒFƒNƒ^ƒCƒ‹‚È‚ç
+        if (other.gameObject.name == "Bullet(Clone)" && !isDead) // è¡çªã—ãŸã®ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å¼¾ä¸¸ã§ã€æ•µãŒã¾ã æ­»ã‚“ã§ã„ãªã„å ´åˆ
         {
-            DecreaseLife(); // ƒ‰ƒCƒt‚ðŒ¸‚ç‚·
+            DecreaseLife(); // ãƒ©ã‚¤ãƒ•ã‚’æ¸›ã‚‰ã™
         }
     }
 
-    // ƒ‰ƒCƒt‚ðŒ¸­‚³‚¹‚éƒƒ\ƒbƒh
+    // ãƒ©ã‚¤ãƒ•ã‚’æ¸›ã‚‰ã™ãƒ¡ã‚½ãƒƒãƒ‰
     void DecreaseLife()
     {
         if (enemyLife > 0)
@@ -25,7 +25,7 @@ public class EnemyLife : MonoBehaviour
             if (enemyLife <= 0)
             {
                 isDead = true;
-                // “G‚ÌƒIƒuƒWƒFƒNƒg‚ðíœ
+                // æ•µã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
                 Destroy(gameObject);
             }
         }
