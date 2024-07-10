@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
+    [System.Serializable]
+    public class TeleportTarget
+    {
+        public string triggerName; // 衝突時にテレポートするオブジェクトの名前
+        public Vector3 destination; // 瞬間移動する目標の座標
+    }
 
-    // 瞬間移動する目標の座標
-    public Vector3 teleportDestination = new Vector3(50, 0, 0);
+    // テレポートターゲットのリスト
+    public List<TeleportTarget> teleportTargets = new List<TeleportTarget>();
 
-    // 衝突時にテレポートするオブジェクトの名前
-    public string teleportTriggerName = "Goal";
     void Start()
     {
         // 必要に応じて初期化処理を追加
@@ -17,24 +21,28 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
-        // 必要に応じて更新処理を追加
+       
     }
 
     // 他のオブジェクトとの衝突を検出
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == teleportTriggerName)
+        foreach (TeleportTarget target in teleportTargets)
         {
-            // 指定されたオブジェクトに衝突したら瞬間移動
-            Teleport();
+            if (collision.gameObject.name == target.triggerName)
+            {
+                // 指定されたオブジェクトに衝突したら瞬間移動
+                Teleport(target.destination);
+                return; // 一度テレポートしたらループを終了
+            }
         }
     }
 
     // 瞬間移動の処理
-    void Teleport()
+    void Teleport(Vector3 destination)
     {
         // プレイヤーの位置を目標座標に設定
-        transform.position = teleportDestination;
-        Debug.Log("テレポートしました！");
+        transform.position = destination;
+        Debug.Log("テレポートしました！ 新しい位置: " + destination);
     }
 }
