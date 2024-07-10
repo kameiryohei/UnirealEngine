@@ -16,8 +16,8 @@ public class Bullet : MonoBehaviour
         rb.AddForce(transform.forward * speed);
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

@@ -12,7 +12,7 @@ public class EnemyLife : MonoBehaviour
     public delegate void BossDefeatedHandler();
     public static event BossDefeatedHandler OnBossDefeated;
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Bullet(Clone)" && !isDead)
         {

@@ -40,7 +40,7 @@ public class Life : MonoBehaviour
     }
 
     // �Փ˂𔻒肷�鏈����ǉ�����
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
