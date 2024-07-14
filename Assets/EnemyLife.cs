@@ -14,17 +14,24 @@ public class EnemyLife : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Bullet(Clone)" && !isDead)
+        if (!isDead)
         {
-            DecreaseLife();
+            if (other.gameObject.name == "Bullet(Clone)")
+            {
+                DecreaseLife(1); // Bullet に当たった場合は -1
+            }
+            else if (other.gameObject.name == "Bullet2(Clone)")
+            {
+                DecreaseLife(200); // Bullet2 に当たった場合は -200
+            }
         }
     }
 
-    void DecreaseLife()
+    void DecreaseLife(int damage)
     {
         if (enemyLife > 0)
         {
-            enemyLife--;
+            enemyLife -= damage;
             if (enemyLife <= 0)
             {
                 isDead = true;
