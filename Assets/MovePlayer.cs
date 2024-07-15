@@ -7,16 +7,15 @@ public class MovePlayer : MonoBehaviour
     [System.Serializable]
     public class TeleportTarget
     {
-        public string triggerName; // Õ“Ë‚ÉƒeƒŒƒ|[ƒg‚·‚éƒIƒuƒWƒFƒNƒg‚Ì–¼‘O
-        public Vector3 destination; // uŠÔˆÚ“®‚·‚é–Ú•W‚ÌÀ•W
+        public string triggerName; // ï¿½Õ“Ëï¿½ï¿½Éƒeï¿½ï¿½ï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ì–ï¿½ï¿½O
+        public Vector3 destination; // ï¿½uï¿½ÔˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½Ú•Wï¿½Ìï¿½ï¿½W
     }
 
-    // ƒeƒŒƒ|[ƒgƒ^[ƒQƒbƒg‚ÌƒŠƒXƒg
+    // ï¿½eï¿½ï¿½ï¿½|ï¿½[ï¿½gï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½Ìƒï¿½ï¿½Xï¿½g
     public List<TeleportTarget> teleportTargets = new List<TeleportTarget>();
 
     void Start()
     {
-        // •K—v‚É‰‚¶‚Ä‰Šú‰»ˆ—‚ğ’Ç‰Á
     }
 
     void Update()
@@ -24,25 +23,23 @@ public class MovePlayer : MonoBehaviour
 
     }
 
-    // ‘¼‚ÌƒIƒuƒWƒFƒNƒg‚Æ‚ÌÕ“Ë‚ğŒŸo
+    // ï¿½ï¿½ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Æ‚ÌÕ“Ë‚ï¿½ï¿½ï¿½ï¿½o
     void OnCollisionEnter(Collision collision)
     {
         foreach (TeleportTarget target in teleportTargets)
         {
             if (collision.gameObject.name == target.triggerName)
             {
-                // w’è‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ÉÕ“Ë‚µ‚½‚çuŠÔˆÚ“®
                 Teleport(target.destination);
-                return; // ˆê“xƒeƒŒƒ|[ƒg‚µ‚½‚çƒ‹[ƒv‚ğI—¹
+                return; // ï¿½ï¿½xï¿½eï¿½ï¿½ï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½çƒ‹ï¿½[ï¿½vï¿½ï¿½ï¿½Iï¿½ï¿½
             }
         }
     }
 
-    // uŠÔˆÚ“®‚Ìˆ—
+    // ï¿½uï¿½ÔˆÚ“ï¿½ï¿½Ìï¿½ï¿½ï¿½
     void Teleport(Vector3 destination)
     {
-        // ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğ–Ú•WÀ•W‚Éİ’è
         transform.position = destination;
-        Debug.Log("ƒeƒŒƒ|[ƒg‚µ‚Ü‚µ‚½I V‚µ‚¢ˆÊ’u: " + destination);
+        Debug.Log("ï¿½eï¿½ï¿½ï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½I ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ê’u: " + destination);
     }
 }

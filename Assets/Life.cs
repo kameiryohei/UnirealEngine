@@ -5,50 +5,41 @@ using TMPro;
 
 public class Life : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI TextLife; // ���C�t��\�����邽�߂�TextMeshProUGUI
-    [SerializeField] private TextMeshProUGUI GameOverTitle; // �Q�[���I�[�o�[���̃^�C�g����\������TextMeshProUGUI
-    private int playerLife = 3; // �v���C���[�̃��C�t�������l�Ƃ���3�ɐݒ�
-    private bool isGameOver = false; // �Q�[���I�[�o�[�t���O
+    [SerializeField] private TextMeshProUGUI TextLife;
+    [SerializeField] private TextMeshProUGUI GameOverTitle;
+    private int playerLife = 10;
+    private bool isGameOver = false;
 
-    // Start is called before the first frame update
+    public bool IsGameOver { get { return isGameOver; } }
+
     void Start()
     {
-        UpdateLifeText(); // �������C�t��\��
+        UpdateLifeText();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isGameOver)
         {
-            // �Q�[���I�[�o�[���̏����i�Ⴆ�΃J�[�\�����\���ɂ���Ȃǁj
             DisablePlayerInput();
-            return; // �Q�[���I�[�o�[���͈ȍ~�̏������s��Ȃ�
+            return;
         }
-
-        // �ʏ�̓��͏����������ɋL�q����
     }
 
-    // �v���C���[�̓��͂𖳌������郁�\�b�h
     void DisablePlayerInput()
     {
-        // ��: �J�[�\�����\���ɂ���
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-        // ���̓��͕��@�ɂ��Ă����l�ɖ���������K�v������Βǉ�����
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
-    // �Փ˂𔻒肷�鏈����ǉ�����
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            DecreaseLife(); // ���C�t�����炷
+            DecreaseLife();
         }
     }
 
-    // ���C�t�����������郁�\�b�h
     void DecreaseLife()
     {
         if (playerLife > 0)
@@ -58,13 +49,11 @@ public class Life : MonoBehaviour
             if (playerLife <= 0)
             {
                 isGameOver = true;
-                // �Q�[���I�[�o�[���̏����i�Ⴆ�΃e�L�X�g�\���Ȃǁj
                 GameOverTitle.text = "Game Over!";
             }
         }
     }
 
-    // ���C�t���X�V���郁�\�b�h
     void UpdateLifeText()
     {
         TextLife.text = string.Format("Life: {0}", playerLife);

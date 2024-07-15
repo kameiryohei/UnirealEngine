@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class FireBullet : MonoBehaviour
 {
-    // bullet prefabのリスト
     public List<GameObject> bullets;
-
-    // 弾丸発射点
     public Transform muzzle;
-
-    // 現在の武器インデックス
     private int currentWeaponIndex = 0;
-
-    // 武器のアンロック
     private bool isBossWeaponUnlocked = false;
+    private Life playerLife; // プレイヤーのLifeスクリプトへの参照
 
     void OnEnable()
     {
@@ -26,22 +20,29 @@ public class FireBullet : MonoBehaviour
         EnemyLife.OnBossDefeated -= UnlockBossWeapon;
     }
 
-    // Use this for initialization 
     void Start()
     {
-
+        // プレイヤーのLifeスクリプトを取得
+        playerLife = GetComponent<Life>();
+        if (playerLife == null)
+        {
+            Debug.LogError("Life script not found on the player object!");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // 武器の切り替え
+        // プレイヤーの体力が0以下の場合、すべての操作を無効化
+        if (playerLife != null && playerLife.IsGameOver)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Q) && isBossWeaponUnlocked)
         {
             SwitchWeapon();
         }
 
-        // space キーが押された時
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FireCurrentWeapon();
@@ -60,31 +61,18 @@ public class FireBullet : MonoBehaviour
 
     void FireCurrentWeapon()
     {
-        // 現在の武器の弾丸の複製
-        GameObject bullet = Instantiate(bullets[currentWeaponIndex]) as GameObject;
-
-        // 弾丸の位置を調整
-        bullet.transform.position = muzzle.position;
-
-        // 弾丸の向きをプレイヤーの向いている方向に設定
-        bullet.transform.rotation = muzzle.rotation;
-
-        // Bulletスクリプトの参照を取得し、速度を設定
+        GameObject bullet = Instantiate(bullets[currentWeaponIndex], muzzle.position, muzzle.rotation);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         if (bulletScript != null)
         {
-            bulletScript.speed = bulletScript.speed; // Bulletスクリプトで設定された速度を使用
+            bulletScript.speed = bulletScript.speed;
         }
-
-        // 弾丸を0.8秒後に破壊
         Destroy(bullet, 0.8f);
     }
 
     void UnlockBossWeapon()
     {
         isBossWeaponUnlocked = true;
-        // 武器リストにボスの武器を追加する
-        // 例えば、bullets.Add(bossBulletPrefab);
         Debug.Log("Boss weapon unlocked");
     }
 }
