@@ -7,7 +7,7 @@ public class Life : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI TextLife;
     [SerializeField] private TextMeshProUGUI GameOverTitle;
-    private int playerLife = 10;
+    private int playerLife = 30;
     private bool isGameOver = false;
 
     public bool IsGameOver { get { return isGameOver; } }
@@ -42,7 +42,7 @@ public class Life : MonoBehaviour
 
     void DecreaseLife()
     {
-        if (playerLife > 0)
+        if (playerLife > 0 && !GameManager.Instance.IsGameClear)  // ゲームクリア状態を確認
         {
             playerLife--;
             UpdateLifeText();
